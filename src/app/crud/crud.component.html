@@ -1,0 +1,33 @@
+<div class="container mt-5" id="crudEmployee">
+    <h1 *ngIf="affichage == 'global'">Touts les vehicules</h1>
+    <h1 *ngIf="affichage == 'voiture'">Toutes les voitures</h1>
+    <h1 *ngIf="affichage == 'bateau'">Touts les bateaus</h1>
+    <h1 *ngIf="affichage == 'avion'">Toutes les avion</h1>
+
+
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th *ngFor="let entete of global" scope="col">{{entete}}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listVehicule">
+                <td>{{item.id}}</td>
+                <td>{{item.type}}</td>
+                <td>{{item.fabricant}}</td>
+                <td>{{item.model}}</td>
+                <td>{{item.annee}}</td>
+                <td>
+                    <div class="btn-group mr-3">
+                        <button type="button" (click)="(item.id)" class="btn btn-info">DISPLAY</button>
+                        <button type="button" (click)="(item.id)" class="btn btn-danger">MODIFY</button>
+                        <button type="button" (click)="delete(item.id)" class="btn btn-danger">DELETE</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

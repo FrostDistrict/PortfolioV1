@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <div class="container-fluid">
+        <a [routerLink]="['/home']" class="navbar-brand"><i class="fab fa-canadian-maple-leaf text-danger fa-2x d-inline"><h1 class="d-inline ml-3 font-weight-bold text-warning">SCOTT</h1></i></a>
+
+        <button class="navbar-toggler bg-warning" data-toggle="collapse" data-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="nav">
+            <ul class="navbar-nav">
+                <div class="dropdown-divider border-warning"></div>
+                <li class="nav-item"><a [routerLink]="['/home']" class="nav-link font-weight-bold text-capitalize text-warning">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link font-weight-bold text-capitalize text-warning dropdown-toggle" role="button" data-toggle="dropdown">Tutoriels</a>
+                    <div class="dropdown-menu bg-dark border-warning">
+                        <a [routerLink]="['/tutoriel', 1]" class="dropdown-item text-warning">Tuto Angular</a>
+                        <a [routerLink]="['/tutoriel', 2]" class="dropdown-item text-warning">Tuto Crud</a>
+                        <a [routerLink]="['/tutoriel', 3]" class="dropdown-item text-warning">Tuto Relation</a>
+                        <a [routerLink]="['/tutoriel', 4]" class="dropdown-item text-warning">Tuto Bootstrap</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a [routerLink]="['/formulaire']" class="nav-link font-weight-bold text-capitalize text-warning">Formulaire</a></li>
+                <li class="nav-item"><a [routerLink]="['/crud']" class="nav-link font-weight-bold text-capitalize text-warning">crud</a></li>
+                <li class="nav-item"><a [routerLink]="['/fun']" class="nav-link font-weight-bold text-capitalize text-warning">fun</a></li>
+                <li class="nav-item"><a [routerLink]="['/contact']" class="nav-link font-weight-bold text-capitalize text-warning">contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

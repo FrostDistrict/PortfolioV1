@@ -1,0 +1,118 @@
+<img src="../../assets/img/voiture.jpg" style="display: none;">
+<img src="../../assets/img/bateau.jpg" style="display: none;">
+<img src="../../assets/img/avion.jpg" style="display: none;">
+<div id="form-container" class="d-flex" [ngStyle]="changeBackground()">
+    <form [formGroup]="vehiculeForm" (ngSubmit)="onSubmit()" class="container p-5 my-5">
+        <h2 class="text-white">Ajouter un vehicule!</h2>
+
+
+        <div class="form-group">
+            <label for="id">Immatriculation</label>
+            <input id="id" formControlName="id" class="form-control"/>
+        </div>
+
+        <p>Type du vehicule</p>
+        <div class="form-group">
+            <div class="form-check">
+                <input id="voiture" type="radio" class="form-check-input" value="voiture"
+                    name="type" formControlName="type" checked>
+                <label class="form-check-label" for="voiture">Voiture</label>
+            </div>
+            <div class="form-check">
+                <input id="avion" type="radio" class="form-check-input" value="avion"
+                    name="type" formControlName="type">
+                <label class="form-check-label" for="avion">Avion</label>
+            </div>
+            <div class="form-check">
+                <input id="bateau" type="radio" class="form-check-input" value="bateau"
+                    name="type" formControlName="type">
+                <label class="form-check-label" for="bateau">Bateau</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="fabricant">Nom du fabricant</label>
+            <input id="fabricant" formControlName="fabricant" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Nom du model</label>
+            <input id="model" formControlName="model" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="annee">Année du vehicule</label>
+            <input id="annee" formControlName="annee" class="form-control"/>
+        </div>
+
+
+        <div *ngIf="vehiculeForm.value.type == ('voiture')" formGroupName="voitureForm">
+            <div class="form-group">
+                <label for="couleur">Couleur</label>
+                <input id="couleur" type="color" formControlName="couleur" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="kilometrage">Kilometrage</label>
+                <input id="kilometrage" type="number" formControlName="kilometrage" class="form-control"/>
+            </div>
+
+            <p>Transmission</p>
+            <div class="form-group">
+                <div class="form-check">
+                    <input id="manuel" type="radio" class="form-check-input" value="manuel"
+                        name="transmission" formControlName="transmission">
+                    <label class="form-check-label" for="manuel">Manuel</label>
+                </div>
+                <div class="form-check">
+                    <input id="automatique" type="radio" class="form-check-input" value="automatique"
+                        name="transmission" formControlName="transmission">
+                    <label class="form-check-label" for="automatique">Automatique</label>
+                </div>
+            </div>
+
+            <p>Mode de propulsion</p>
+            <div class="form-group">
+                <select name="modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
+                    <option value="propulsion">Propulsion arrière</option>
+                    <option value="traction">Traction avant</option>
+                    <option value="quatreRoue">Quatre roue motrice</option>
+                </select>
+            </div>
+
+
+        </div>
+
+        <div *ngIf="vehiculeForm.value.type == ('avion')" formGroupName="avionForm">
+            
+            <p>Mode de propulsion</p>
+            <div class="form-group">
+                <select name="modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
+                    <option value="helice">Propulsion par hèlice</option>
+                    <option value="jet">Propulsion par turboréacteur</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tempsUsage">Heures d'usage</label>
+                <input id="tempsUsage" type="number" formControlName="tempsUsage" class="form-control"/>
+            </div>
+        </div>
+
+        <div *ngIf="vehiculeForm.value.type == ('bateau')" formGroupName="bateauForm">
+            
+            <div class="form-group">
+                <label for="couleur">Couleur</label>
+                <input id="couleur" type="color" formControlName="couleur" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label for="tempsUsage">Heures d'usage</label>
+                <input id="tempsUsage" type="number" formControlName="tempsUsage" class="form-control"/>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>

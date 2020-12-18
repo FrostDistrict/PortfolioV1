@@ -1,0 +1,91 @@
+{
+  "api": [
+    {
+      "id": "XVY365",
+      "type": "voiture",
+      "fabricant": "Yamaha",
+      "model": "c-130",
+      "annee": "2002",
+      "voitureForm": {
+        "couleur": "#b70b0b",
+        "kilometrage": 1000000,
+        "transmission": "automatique",
+        "modePropulsion": "traction"
+      }
+    },
+    {
+      "id": "ACV1293",
+      "type": "voiture",
+      "fabricant": "Ford",
+      "model": "FastCarFast",
+      "annee": "1992",
+      "voitureForm": {
+        "couleur": "#a91919",
+        "kilometrage": 12,
+        "transmission": "manuel",
+        "modePropulsion": "propulsion"
+      }
+    },
+    {
+      "id": "XCV123",
+      "type": "voiture",
+      "fabricant": "Toyota",
+      "model": "Chaser",
+      "annee": "1996",
+      "voitureForm": {
+        "couleur": "#c96d03",
+        "kilometrage": 300004,
+        "transmission": "manuel",
+        "modePropulsion": "propulsion"
+      }
+    },
+    {
+      "id": "EZ-4512",
+      "type": "avion",
+      "fabricant": "Boeing",
+      "model": "c-130",
+      "annee": "1992",
+      "avionForm": {
+        "modePropulsion": "helice",
+        "capacite": "",
+        "tempsUsage": 123
+      }
+    },
+    {
+      "id": "EZ-4532",
+      "type": "avion",
+      "fabricant": "Boeing",
+      "model": "FlyGoFast",
+      "annee": "1234",
+      "avionForm": {
+        "modePropulsion": "jet",
+        "capacite": "",
+        "tempsUsage": 1002
+      }
+    },
+    {
+      "id": "ImmaBoat",
+      "type": "bateau",
+      "fabricant": "Lambo",
+      "model": "zoomZoom",
+      "annee": "2020",
+      "bateauForm": {
+        "couleur": "#8abd00",
+        "tempsUsage": 123,
+        "taille": ""
+      }
+    },
+    {
+      "id": "CVD123",
+      "type": "bateau",
+      "fabricant": "CRUISE",
+      "model": "SHIP",
+      "annee": "2004",
+      "bateauForm": {
+        "couleur": "#f9f6f6",
+        "tempsUsage": 3000,
+        "taille": ""
+      }
+    }
+  ]
+}
