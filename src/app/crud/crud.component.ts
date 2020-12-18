@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IVehicule } from '../models/i-vehicule';
+import { Voiture } from "../models/voiture";
 import { CrudService } from "./crud.service";
 
 @Component({
@@ -8,11 +9,12 @@ import { CrudService } from "./crud.service";
   styleUrls: ['./crud.component.css']
 })
 export class CrudComponent implements OnInit {
-  listVehicule : IVehicule[];
+  listVehicule : any[];
   affichage = "global";
   global = ['ID', 'Type', 'Fabricant', 'Model', 'Annee'];
   voiture = ['Couleur', 'Kilometrage', 'Transmission', 'Propulsion'];
-  avion = ['Mode de Propulsion', 'Capacite', "Temps d'usage"]
+  avion = ['Mode de Propulsion', 'Capacite', "Temps d'usage"];
+  bateau = ['Couleur', "Temps d'usage"];
 
   constructor(private service: CrudService) { }
 

@@ -1,25 +1,64 @@
-<div class="container mt-5" id="crudEmployee">
-    <h1 *ngIf="affichage == 'global'">Touts les vehicules</h1>
-    <h1 *ngIf="affichage == 'voiture'">Toutes les voitures</h1>
-    <h1 *ngIf="affichage == 'bateau'">Touts les bateaus</h1>
-    <h1 *ngIf="affichage == 'avion'">Toutes les avion</h1>
+<div class="container-fluid" id="crudEmployee">
+    <h1 *ngIf="affichage == 'global'">Tout les vehicules</h1>
+    <h1 *ngIf="affichage == 'voiture'">Toutes les voitures <i class="fas fa-car text-warning"></i></h1>
+    <h1 *ngIf="affichage == 'bateau'">Tout les bateaus <i class="fas fa-ship text-danger"></i></h1>
+    <h1 *ngIf="affichage == 'avion'">Toutes les avion <i class="fas fa-fighter-jet text-info"></i></h1>
 
-
+    <div class="dropdown float-right m-2">
+        <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Affichage
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button *ngIf="affichage != 'voiture'" class="dropdown-item" type="button"
+                (click)="affichage = 'voiture'">Voiture</button>
+            <button *ngIf="affichage != 'avion'" class="dropdown-item" type="button"
+                (click)="affichage = 'avion'">Avion</button>
+            <button *ngIf="affichage != 'bateau'" class="dropdown-item" type="button"
+                (click)="affichage = 'bateau'">Bateau</button>
+            <button *ngIf="affichage != 'global'" class="dropdown-item" type="button"
+                (click)="affichage = 'global'">Global</button>
+        </div>
+    </div>
 
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th *ngFor="let entete of global" scope="col">{{entete}}</th>
+                <ng-container *ngIf="affichage == 'voiture'">
+                    <th *ngFor="let entete of voiture" scope="col">{{entete}}</th>
+                </ng-container>
+                <ng-container *ngIf="affichage == 'avion'">
+                    <th *ngFor="let entete of avion" scope="col">{{entete}}</th>
+                </ng-container>
+                <ng-container *ngIf="affichage == 'bateau'">
+                    <th *ngFor="let entete of bateau" scope="col">{{entete}}</th>
+                </ng-container>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let item of listVehicule">
+        <tbody *ngFor="let item of listVehicule">
+            <tr *ngIf="(item.type == affichage || affichage == 'global')">
                 <td>{{item.id}}</td>
                 <td>{{item.type}}</td>
                 <td>{{item.fabricant}}</td>
                 <td>{{item.model}}</td>
                 <td>{{item.annee}}</td>
+                <ng-container *ngIf="affichage == 'voiture'">
+                    <td>{{item.voitureForm.couleur}}</td>
+                    <td>{{item.voitureForm.kilometrage}}</td>
+                    <td>{{item.voitureForm.transmission}}</td>
+                    <td>{{item.voitureForm.modePropulsion}}</td>
+                </ng-container>
+                <ng-container *ngIf="affichage == 'avion'">
+                    <td>{{item.avionForm.modePropulsion}}</td>
+                    <td>{{item.avionForm.capacite}}</td>
+                    <td>{{item.avionForm.tempsUsage}}</td>
+                </ng-container>
+                <ng-container *ngIf="affichage == 'bateau'">
+                    <td>{{item.bateauForm.couleur}}</td>
+                    <td>{{item.bateauForm.tempsUsage}}</td>
+                </ng-container>
                 <td>
                     <div class="btn-group mr-3">
                         <button type="button" (click)="(item.id)" class="btn btn-info">DISPLAY</button>

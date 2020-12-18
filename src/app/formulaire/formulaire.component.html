@@ -74,8 +74,8 @@
             <p>Mode de propulsion</p>
             <div class="form-group">
                 <select name="modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
-                    <option value="propulsion">Propulsion arrière</option>
-                    <option value="traction">Traction avant</option>
+                    <option value="propulsion arriere">Propulsion arrière</option>
+                    <option value="traction avant">Traction avant</option>
                     <option value="quatreRoue">Quatre roue motrice</option>
                 </select>
             </div>
@@ -91,6 +91,11 @@
                     <option value="helice">Propulsion par hèlice</option>
                     <option value="jet">Propulsion par turboréacteur</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="capacite">Capacité</label>
+                <input id="capacite" type="number" formControlName="capacite" class="form-control"/>
             </div>
 
             <div class="form-group">
