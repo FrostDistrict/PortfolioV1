@@ -36,7 +36,7 @@ export class FormulaireComponent implements OnInit {
 
   vehicule: IVehicule;
   validMessage: String = "";
-  imageUrl : any = {voiture: "url(../../assets/img/voiture.jpg)", bateau: "url(../../assets/img/bateau.jpg)", avion: "url(../../assets/img/avion.jpg)"};
+  imageUrl : any = {voiture: "url(assets/img/voiture.jpg)", bateau: "url(assets/img/bateau.jpg)", avion: "url(assets/img/avion.jpg)"};
 
   constructor(private service: ReactiveService, private router: Router) { }
 
