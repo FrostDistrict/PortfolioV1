@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IVehicule } from '../models/i-vehicule';
-import { Voiture } from "../models/voiture";
 import { CrudService } from "./crud.service";
 
 @Component({
@@ -8,6 +6,7 @@ import { CrudService } from "./crud.service";
   templateUrl: './crud.component.html',
   styleUrls: ['./crud.component.css']
 })
+
 export class CrudComponent implements OnInit {
   listVehicule : any[];
   affichage = "global";
@@ -25,12 +24,16 @@ export class CrudComponent implements OnInit {
   getAllVehicules():void {
     this.service.getAll().subscribe(data => { this.listVehicule = data;
       console.log(this.listVehicule);
+    }, (err) => {
+      console.log(err);
     });
   }
 
   public delete(id:number){
     this.service.deleteById(id).subscribe(resultat => {
       this.listVehicule = this.listVehicule.filter(element => element.id !== id);
+    }, (err) => {
+      console.log(err);
     });
   }
 }

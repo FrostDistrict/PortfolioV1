@@ -1,0 +1,14 @@
+#main {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.boxoftext {
+    background-color: rgba(29, 53, 87, 0.6);
+    min-width: 400px;
+}
+
+p, li {
+    color: white;
+}

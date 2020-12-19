@@ -24,6 +24,7 @@ export class GenericCrudService<T, K> {
      * READ BY ID(GET)
      */
     getById(id: K): Observable<T> {
+        console.log(this.http.get<T>(this.url+ "/"+ id));
         return this.http.get<T>(this.url+ "/"+ id);
     }
     

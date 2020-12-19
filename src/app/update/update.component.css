@@ -4,7 +4,7 @@
     background-size: cover;
 }
 form {
-    max-width: 750px;
+    width: 40%;
     float: left;
     margin-left: 50px;
     background-color: rgba(0, 0, 0, 0.5);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IVehicule } from "../models/i-vehicule";
 import { ReactiveService } from "./reactive.service";
@@ -12,35 +12,60 @@ import { ReactiveService } from "./reactive.service";
 export class FormulaireComponent implements OnInit {
 
   vehiculeForm = new FormGroup({
-    id: new FormControl('', Validators.required),
+    id: new FormControl('', [
+      Validators.required, Validators.minLength(5), Validators.maxLength(7), this.uniqueIdValidator(), Validators.pattern('[A-Za-z0-9]*')
+    ]),
     type: new FormControl('voiture', Validators.required),
     fabricant: new FormControl('', Validators.required),
     model: new FormControl('', Validators.required),
-    annee: new FormControl('', Validators.required),
+    annee: new FormControl('', [Validators.required, Validators.min(1850), Validators.max(2021)]),
     voitureForm: new FormGroup({
       couleur: new FormControl(''),
-      kilometrage: new FormControl(''),
+      kilometrage: new FormControl('', [Validators.min(0)]),
       transmission: new FormControl(''),
       modePropulsion: new FormControl('')
     }),
     avionForm: new FormGroup({
       modePropulsion: new FormControl(''),
-      capacite: new FormControl(''),
-      tempsUsage: new FormControl('')
+      capacite: new FormControl('', [Validators.min(0)]),
+      tempsUsage: new FormControl('', [Validators.min(0)])
     }),
     bateauForm: new FormGroup({
       couleur: new FormControl(''),
-      tempsUsage: new FormControl('')
+      tempsUsage: new FormControl('', [Validators.min(0)])
     })
   });
 
-  vehicule: IVehicule;
-  validMessage: String = "";
-  imageUrl : any = {voiture: "url(assets/img/voiture.jpg)", bateau: "url(assets/img/bateau.jpg)", avion: "url(assets/img/avion.jpg)"};
+  listVehicules: any[];
+  validMessage: string = "";
+  validId: string = "";
+  imageUrl: any = { voiture: "url(assets/img/voiture.jpg)", bateau: "url(assets/img/bateau.jpg)", avion: "url(assets/img/avion.jpg)" };
 
   constructor(private service: ReactiveService, private router: Router) { }
 
   ngOnInit(): void {
+    this.getAllVehicules();
+  }
+
+  uniqueIdValidator(): ValidatorFn {
+    return (control: AbstractControl): any => {
+      let valid = true;
+      if (this.listVehicules == null) {
+        return;
+      }
+      this.listVehicules.forEach(vehicule => {
+        if (vehicule.id == control.value) {
+          valid = false;
+        }
+      });
+      if(valid){
+        this.validId = "";
+        return null;
+      }else{
+        this.validId = "Un vehicule existe deja avec cette immatriculation"
+        return {uniqueIdValidator : {valid:false}};
+      }
+    }
   }
 
   removeUnusedGroups() {
@@ -58,7 +83,15 @@ export class FormulaireComponent implements OnInit {
     }
   }
 
-  public changeBackground() : object {
+  getAllVehicules(): void {
+    this.service.getAll().subscribe(data => {
+      this.listVehicules = data;
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  public changeBackground(): object {
     return { 'background-image': this.imageUrl[this.vehiculeForm.value.type] };
   }
 
@@ -69,9 +102,11 @@ export class FormulaireComponent implements OnInit {
       this.service.save(this.vehiculeForm.value).subscribe(data => {
         this.vehiculeForm.reset();
         this.router.navigateByUrl('/crud');
+      }, (err) => {
+        console.log(err);
       });
     } else {
-      this.validMessage = "Prease fill the form before submitting!";
+      this.validMessage = "S.V.P remplir les champs requis";
     }
   }
 

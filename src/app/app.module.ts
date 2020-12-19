@@ -13,6 +13,9 @@ import { FooterComponent } from './footer/footer.component';
 import { FormulaireComponent } from './formulaire/formulaire.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UpdateComponent } from './update/update.component';
+import { CopyClipboardDirective } from './service/copy-clipboard/copy-clipboard.directive';
+import { TutorielComponent } from './tutoriel/tutoriel.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     FooterComponent,
     FormulaireComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    UpdateComponent,
+    CopyClipboardDirective,
+    TutorielComponent
   ],
   imports: [
     BrowserModule,

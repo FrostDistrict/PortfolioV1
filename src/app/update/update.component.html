@@ -2,8 +2,8 @@
 <img src="assets/img/bateau.jpg" style="display: none;">
 <img src="assets/img/avion.jpg" style="display: none;">
 <div id="form-container" class="d-flex" [ngStyle]="changeBackground()">
-    <form [formGroup]="vehiculeForm" (ngSubmit)="onSubmit()" class="container p-5 my-5">
-        <h2 class="text-white">Ajouter un vehicule!</h2>
+    <form [formGroup]="vehiculeForm" (ngSubmit)="updateUser()" class="container p-5 my-5">
+        <h2 class="text-white">Modifier un vehicule!</h2>
 
         <div *ngIf="(validMessage != '')">
             <h3 class="has-info">{{validMessage}}</h3>
@@ -11,66 +11,64 @@
 
         <div class="form-group">
             <label for="id">Immatriculation*</label>
-            <input id="id" data-toggle="tooltip" title="Combination de 5 a 7 chiffre ou lettre" formControlName="id"
-                class="form-control" />
-            <p *ngIf="(validId != '')"><small>{{validId}}</small></p>
+            <input id="id" data-toggle="tooltip" title="Combination de 5 a 7 chiffre ou lettre" formControlName="id" class="form-control"/>
         </div>
 
         <p>Type du vehicule*</p>
         <div class="form-group">
             <div class="form-check">
-                <input id="voiture" type="radio" class="form-check-input" value="voiture" name="type"
-                    formControlName="type" checked>
+                <input id="voiture" disabled type="radio" class="form-check-input" value="voiture"
+                    name="type" formControlName="type" [(ngModel)]="vehicule.type">
                 <label class="form-check-label" for="voiture">Voiture</label>
             </div>
             <div class="form-check">
-                <input id="avion" type="radio" class="form-check-input" value="avion" name="type"
-                    formControlName="type">
+                <input id="avion" disabled type="radio" class="form-check-input" value="avion"
+                    name="type" formControlName="type" [(ngModel)]="vehicule.type">
                 <label class="form-check-label" for="avion">Avion</label>
             </div>
             <div class="form-check">
-                <input id="bateau" type="radio" class="form-check-input" value="bateau" name="type"
-                    formControlName="type">
+                <input id="bateau" disabled type="radio" class="form-check-input" value="bateau"
+                    name="type" formControlName="type" [(ngModel)]="vehicule.type">
                 <label class="form-check-label" for="bateau">Bateau</label>
             </div>
         </div>
 
         <div class="form-group">
             <label for="fabricant">Nom du fabricant*</label>
-            <input id="fabricant" formControlName="fabricant" class="form-control" />
+            <input id="fabricant" [(ngModel)]="vehicule.fabricant" formControlName="fabricant" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="model">Nom du model*</label>
-            <input id="model" formControlName="model" class="form-control" />
+            <input id="model" [(ngModel)]="vehicule.model" formControlName="model" class="form-control"/>
         </div>
 
         <div class="form-group">
             <label for="annee">Année du vehicule*</label>
-            <input id="annee" formControlName="annee" class="form-control" />
+            <input id="annee" [(ngModel)]="vehicule.annee" formControlName="annee" class="form-control"/>
         </div>
 
 
         <div *ngIf="vehiculeForm.value.type == ('voiture')" formGroupName="voitureForm">
             <div class="form-group">
                 <label for="couleur">Couleur</label>
-                <input id="couleur" type="color" formControlName="couleur" class="form-control" />
+                <input id="couleur" [(ngModel)]="vehicule.voitureForm.couleur" type="color" formControlName="couleur" class="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="kilometrage">Kilometrage</label>
-                <input id="kilometrage" type="number" formControlName="kilometrage" class="form-control" />
+                <input id="kilometrage" [(ngModel)]="vehicule.voitureForm.kilometrage" type="number" formControlName="kilometrage" class="form-control"/>
             </div>
 
             <p>Transmission</p>
             <div class="form-group">
                 <div class="form-check">
-                    <input id="manuel" type="radio" class="form-check-input" value="manuel" name="transmission"
-                        formControlName="transmission">
+                    <input id="manuel" [(ngModel)]="vehicule.voitureForm.transmission" type="radio" class="form-check-input" value="manuel"
+                        name="transmission" formControlName="transmission">
                     <label class="form-check-label" for="manuel">Manuel</label>
                 </div>
                 <div class="form-check">
-                    <input id="automatique" type="radio" class="form-check-input" value="automatique"
+                    <input id="automatique" [(ngModel)]="vehicule.voitureForm.transmission" type="radio" class="form-check-input" value="automatique"
                         name="transmission" formControlName="transmission">
                     <label class="form-check-label" for="automatique">Automatique</label>
                 </div>
@@ -78,7 +76,7 @@
 
             <p>Mode de propulsion</p>
             <div class="form-group">
-                <select name="modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
+                <select name="modePropulsion" [(ngModel)]="vehicule.voitureForm.modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
                     <option value="propulsion arriere">Propulsion arrière</option>
                     <option value="traction avant">Traction avant</option>
                     <option value="quatreRoue">Quatre roue motrice</option>
@@ -89,10 +87,10 @@
         </div>
 
         <div *ngIf="vehiculeForm.value.type == ('avion')" formGroupName="avionForm">
-
+            
             <p>Mode de propulsion</p>
             <div class="form-group">
-                <select name="modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
+                <select name="modePropulsion" [(ngModel)]="vehicule.avionForm.modePropulsion" id="modePropulsion" class="form-control" formControlName="modePropulsion">
                     <option value="helice">Propulsion par hèlice</option>
                     <option value="jet">Propulsion par turboréacteur</option>
                 </select>
@@ -100,30 +98,30 @@
 
             <div class="form-group">
                 <label for="capacite">Capacité</label>
-                <input id="capacite" type="number" formControlName="capacite" class="form-control" />
+                <input id="capacite" [(ngModel)]="vehicule.avionForm.capacite" type="number" formControlName="capacite" class="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="tempsUsage">Heures d'usage</label>
-                <input id="tempsUsage" type="number" formControlName="tempsUsage" class="form-control" />
+                <input id="tempsUsage" [(ngModel)]="vehicule.avionForm.tempsUsage" type="number" formControlName="tempsUsage" class="form-control"/>
             </div>
         </div>
 
         <div *ngIf="vehiculeForm.value.type == ('bateau')" formGroupName="bateauForm">
-
+            
             <div class="form-group">
                 <label for="couleur">Couleur</label>
-                <input id="couleur" type="color" formControlName="couleur" class="form-control" />
+                <input id="couleur" [(ngModel)]="vehicule.bateauForm.couleur" type="color" formControlName="couleur" class="form-control"/>
             </div>
 
             <div class="form-group">
                 <label for="tempsUsage">Heures d'usage</label>
-                <input id="tempsUsage" type="number" formControlName="tempsUsage" class="form-control" />
+                <input id="tempsUsage" [(ngModel)]="vehicule.bateauForm.tempsUsage" type="number" formControlName="tempsUsage" class="form-control"/>
             </div>
 
         </div>
 
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-        <a [routerLink]="['/crud']" id="cancel" class="btn btn-warning ml-2">Cancel</a>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        <a [routerLink]="['/crud']" id="cancel" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
